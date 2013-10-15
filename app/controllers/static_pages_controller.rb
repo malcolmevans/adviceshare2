@@ -7,4 +7,7 @@ class StaticPagesController < ApplicationController
 
   def topics
   end
+
+  def HowItWorks
+  end
 end
