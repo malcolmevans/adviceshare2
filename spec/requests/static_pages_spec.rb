@@ -2,61 +2,61 @@ require 'spec_helper'
 
 describe "Static pages" do
 
+  subject { page }
+
   describe "Home page" do
+    before { visit root_path }
 
-    it "should have the content 'AdviceShare'" do
-      visit '/static_pages/home'
-      expect(page).to have_content('AdviceShare')
-    end
-
-    it "should have the base title" do
-      visit '/static_pages/home'
-      expect(page).to have_title("AdviceShare")
-    end
-
-    it "should not have a custom page title" do
-      visit '/static_pages/home'
-      expect(page).not_to have_title('| Home')
-    end
-
+    it { should have_content('AdviceShare') }
+    it { should have_title(full_title('')) }
+    it { should_not have_title('| Home') }
   end
 
   describe "About page" do
+    before { visit about_path }
 
-    it "should have the content 'About'" do
-      visit '/static_pages/about'
-      expect(page).to have_content('About')
-    end
-
-    it "should have the title 'About'" do
-      visit '/static_pages/about'
-      expect(page).to have_title("AdviceShare | About")
-    end
+    it { should have_content('About') }
+    it { should have_title(full_title('About')) }
   end
 
-  describe "Topics page" do
+describe "Topics page" do
+    before { visit topics_path }
 
-    it "should have the content 'Topics'" do
-      visit '/static_pages/topics'
-      expect(page).to have_content('Topics')
-    end
-
-    it "should have the title 'Topics'" do
-      visit '/static_pages/topics'
-      expect(page).to have_title("AdviceShare | Topics")
-    end
-  end
-  describe "How it Works" do
-
-    it "should have the content 'How it Works'" do
-      visit '/static_pages/HowItWorks'
-      expect(page).to have_content('How it Works')
-    end
-
-    it "should have the title 'HowItWorks'" do
-      visit '/static_pages/HowItWorks'
-      expect(page).to have_title("AdviceShare | HowItWorks")
-    end
+    it { should have_content('Topics') }
+    it { should have_title(full_title('Topics')) }
   end
 
+describe "How It Works page" do
+    before { visit howItWorks_path }
+
+    it { should have_content('How it Works') }
+    it { should have_title(full_title('How it Works')) }
+  end
+
+describe "Contact page" do
+    before { visit contact_path }
+
+    it { should have_content('Contact') }
+    it { should have_title(full_title('Contact')) }
+  end
+
+  describe "SignUp page" do
+    before { visit signUp_path }
+
+    it { should have_content('Sign Up!') }
+    it { should have_title(full_title('Sign Up!')) }
+  end
+
+  it "should have the right links on the layout" do
+    visit root_path
+    click_link "About"
+    expect(page).to have_title(full_title('About'))
+    click_link "How it Works"
+    expect(page).to have_title(full_title('How it Works'))
+    click_link "Contact"
+    expect(page).to have_title(full_title('Contact'))
+    click_link "Home"
+    click_link "Sign up now!"
+    expect(page).to have_title(full_title('Sign Up!'))
+  end
 end

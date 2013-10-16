@@ -8,6 +8,12 @@ class StaticPagesController < ApplicationController
   def topics
   end
 
-  def HowItWorks
+  def howItWorks
+  end
+
+  def contact
+  end
+
+  def signUp
   end
 end
