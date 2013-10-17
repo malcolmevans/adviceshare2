@@ -40,13 +40,6 @@ describe "Contact page" do
     it { should have_title(full_title('Contact')) }
   end
 
-  describe "SignUp page" do
-    before { visit signUp_path }
-
-    it { should have_content('Sign Up!') }
-    it { should have_title(full_title('Sign Up!')) }
-  end
-
   it "should have the right links on the layout" do
     visit root_path
     click_link "About"
@@ -56,7 +49,5 @@ describe "Contact page" do
     click_link "Contact"
     expect(page).to have_title(full_title('Contact'))
     click_link "Home"
-    click_link "Sign up now!"
-    expect(page).to have_title(full_title('Sign Up!'))
   end
 end
